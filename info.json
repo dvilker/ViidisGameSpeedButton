@@ -1,0 +1,14 @@
+{
+  "name": "ViidisGameSpeedButton",
+  "version": "0.1.1",
+  "factorio_version": "1.1",
+  "dependencies": [
+    "base >= 1.0"
+  ],
+  "title": "Viidis Game Speed Button",
+  "author": "Viidi",
+  "contact": "https://github.com/dvilker",
+  "source": "https://github.com/dvilker/ViidisGameSpeedButton",
+  "homepage": "https://mods.factorio.com/mod/ViidisGameSpeedButton",
+  "description": "Button of game speed control."
+}
