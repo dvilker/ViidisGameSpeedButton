@@ -134,6 +134,12 @@ local function init()
     end
 end
 
+local function characterCreated()
+    updateSpeeds()
+    updateButton()
+end
+
+script.on_event(defines.events.on_player_created, characterCreated)
 script.on_configuration_changed(updateSpeeds)
 script.on_event(defines.events.on_runtime_mod_setting_changed, updateSpeeds)
 
