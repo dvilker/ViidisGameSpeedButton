@@ -1,7 +1,7 @@
 {
   "name": "ViidisGameSpeedButton",
-  "version": "0.2.1",
-  "factorio_version": "1.1",
+  "version": "2.0.1",
+  "factorio_version": "2.0",
   "dependencies": [
     "base >= 1.0"
   ],

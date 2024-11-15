@@ -9,9 +9,9 @@ local maxSpeed = 60
 local function updateButton()
     local caption
     if game.speed > 1 - eps or game.speed < eps then
-        caption = "×" .. tostring(math.floor(game.speed * 100) / 100) .. (global.auto and " A" or "")
+        caption = "×" .. tostring(math.floor(game.speed * 100) / 100) .. (storage.auto and " A" or "")
     else
-        caption = "/" .. tostring(math.floor(100 / game.speed) / 100) .. (global.auto and " A" or "")
+        caption = "/" .. tostring(math.floor(100 / game.speed) / 100) .. (storage.auto and " A" or "")
     end
 
     for _, player in pairs(game.players) do
@@ -57,11 +57,11 @@ local function onGuiClick(event)
         if event.button == defines.mouse_button_type.left then
             if event.shift then
                 if not game.is_multiplayer() then
-                    global.auto = true
+                    storage.auto = true
                     game.speed = gameSpeedByState()
                 end
             else
-                global.auto = nil
+                storage.auto = nil
                 if game.speed < 1 - eps then
                     game.speed = 1
                 else
@@ -74,7 +74,7 @@ local function onGuiClick(event)
                 end
             end
         elseif event.button == defines.mouse_button_type.right then
-            global.auto = nil
+            storage.auto = nil
             if game.speed > 1 + eps then
                 game.speed = 1
             else
@@ -86,7 +86,7 @@ local function onGuiClick(event)
                 end
             end
         elseif event.button == defines.mouse_button_type.middle then
-            global.auto = nil
+            storage.auto = nil
             game.speed = 1
         end
         updateButton()
@@ -118,7 +118,7 @@ local function updateSpeeds()
 end
 
 local function updateAutoSpeed()
-    if global.auto then
+    if storage.auto then
         local newSpeed = gameSpeedByState()
         if math.abs(game.speed, newSpeed) > eps then
             game.speed = newSpeed
@@ -140,6 +140,7 @@ script.on_event(defines.events.on_runtime_mod_setting_changed, updateSpeeds)
 script.on_init(init)
 script.on_load(init)
 script.on_configuration_changed(init)
+script.on_event(defines.events.on_player_created, init)
 
 script.on_event(defines.events.on_player_driving_changed_state, updateAutoSpeed)
 script.on_event(defines.events.on_train_changed_state, updateAutoSpeed)
